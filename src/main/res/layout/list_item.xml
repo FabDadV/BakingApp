@@ -7,7 +7,6 @@
         <variable name="callback"
                   type="ex.com.bakingapp.ui.RecipeClickCallback"/>
     </data>
-
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,20 +16,17 @@
         android:layout_marginStart="@dimen/item_horizontal_margin"
         android:layout_marginEnd="@dimen/item_horizontal_margin"
         app:cardUseCompatPadding="true">
-
         <RelativeLayout
             android:layout_marginStart="@dimen/item_horizontal_margin"
             android:layout_marginEnd="@dimen/item_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/cd_recipe_name"
                 android:text="@{recipe.name}"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,13 +35,11 @@
                 android:layout_marginEnd="@dimen/margin"
                 android:layout_marginRight="@dimen/margin"
                 android:text="@{String.valueOf(recipe.servings)}" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name"
                 android:text="@{recipe.ingredients}"/>
         </RelativeLayout>
-
     </android.support.v7.widget.CardView>
 </layout>

@@ -54,5 +54,4 @@ public class ItemViewModel extends AndroidViewModel {
             return (T) new ItemViewModel(application, repository, recipeId);
         }
     }
-
 }

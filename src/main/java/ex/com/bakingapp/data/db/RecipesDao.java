@@ -1,7 +1,6 @@
 package ex.com.bakingapp.data.db;
 
 import java.util.List;
-
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
