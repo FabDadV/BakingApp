@@ -78,11 +78,14 @@ public abstract class AppDB extends RoomDatabase {
             database.stepsDao().insertAll(steps);
         });
     }
-    private static void addDelay() {
+
+    public LiveData<Boolean> getDatabaseCreated() { return isDatabaseCreated; }
+
+/*    private static void addDelay() {
         try {
             Thread.sleep(4000);
         } catch (InterruptedException ignored) {
         }
     }
-    public LiveData<Boolean> getDatabaseCreated() { return isDatabaseCreated; }
+*/
 }

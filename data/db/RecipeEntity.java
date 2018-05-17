@@ -27,7 +27,6 @@ public class RecipeEntity implements Recipe {
     @Override
     public String getImage() { return image; }
     public void setImage(String image) { this.image = image; }
-
     @Override
     public List<String> getIngredients() { return null; }
     public void setIngredients(List<String> ingredients) { this.ingredients = ingredients; }
