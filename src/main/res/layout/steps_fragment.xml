@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="isLoading"
+            type="boolean" />
+        <variable
+            name="itemViewModel"
+            type="ex.com.bakingapp.viewmodel.ItemViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_light_background"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/list_item"
+            app:recipe="@{itemViewModel.recipe}"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_loading_details"
+                android:text="@string/loading_details"
+                app:visibleGone="@{isLoading}"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/list_wrapper">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/details_list"
+                    android:contentDescription="@string/cd_details_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="LinearLayoutManager"
+                    app:visibleGone="@{!isLoading}"/>
+            </FrameLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>
