@@ -37,6 +37,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/list_wrapper">
 
+                <!--suppress AndroidDomInspection -->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/details_list"
                     android:contentDescription="@string/cd_details_list"

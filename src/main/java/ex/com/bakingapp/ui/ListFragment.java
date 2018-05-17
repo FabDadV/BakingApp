@@ -4,10 +4,13 @@ import java.util.List;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +22,9 @@ import ex.com.bakingapp.data.db.RecipeEntity;
 import ex.com.bakingapp.viewmodel.ListViewModel;
 
 public class ListFragment extends Fragment {
-    public static final String TAG = "ListViewModel";
+    // Constant for logging
+    public static final String TAG = "called ListFtagment";
+    private static final int DEFAULT_SIZE = 160;
     private RecipeAdapter recipeAdapter;
     private ListFragmentBinding listBinding;
 
@@ -27,6 +32,7 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "Inflate ListFragment");
         listBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
         recipeAdapter = new RecipeAdapter(recipeClickCallback);
         listBinding.rvList.setAdapter(recipeAdapter);
@@ -63,4 +69,12 @@ public class ListFragment extends Fragment {
             }
         }
     };
+    /* https://stackoverflow.com/questions/33575731/gridlayoutmanager-how-to-auto-fit-columns
+     * calculate number of columns in GridLayoutManager
+     */
+    private static int calculateColumns(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+        return (int) (dpWidth / DEFAULT_SIZE);
+    }
 }

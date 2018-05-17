@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,6 +16,8 @@ import ex.com.bakingapp.data.db.Recipe;
 import ex.com.bakingapp.databinding.ListItemBinding;
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
+    // Constant for logging
+    public static final String TAG = "called RecipeAdapter";
     List<? extends Recipe> recipes;
     @Nullable
     private final RecipeClickCallback recipeClickCallback;
@@ -22,7 +25,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public RecipeAdapter(@Nullable RecipeClickCallback clickCallback) {
         recipeClickCallback = clickCallback;
     }
-
     public void setRecipeList(final List<? extends Recipe> recipeList) {
         if (recipes == null) {
             recipes = recipeList;

@@ -7,15 +7,15 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+// import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
+import android.util.Log;
 
 import ex.com.bakingapp.AppExecutors;
 import ex.com.bakingapp.utils.DataGenerator;
-
-@TypeConverters(ListConverter.class)
+// @TypeConverters(ListConverter.class)
 @Database(entities = {RecipeEntity.class, StepEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
     private static AppDB sInstance;
@@ -26,6 +26,10 @@ public abstract class AppDB extends RoomDatabase {
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 
     public static AppDB getInstance(final Context context, final AppExecutors executors) {
+        // Constant for logging
+        String TAG = "called AppDB ";
+        Log.d(TAG, "getInstance");
+
         if (sInstance == null) {
             synchronized (AppDB.class) {
                 if (sInstance == null) {
@@ -42,6 +46,10 @@ public abstract class AppDB extends RoomDatabase {
      * The SQLite database is only created when it's accessed for the first time.
      */
     private static AppDB buildDatabase(final Context appContext, final AppExecutors executors) {
+        // Constant for logging
+        String TAG = "called AppDB ";
+        Log.d(TAG, "buildDatabase");
+
         return Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)
                 .addCallback(new Callback() {
                     @Override
@@ -49,8 +57,10 @@ public abstract class AppDB extends RoomDatabase {
                         super.onCreate(db);
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
-//                            addDelay();
-                            // Generate the data for pre-population
+                            Log.d(TAG, "DataGenerator");
+                            addDelay();
+                            Log.d(TAG, "addDelay()");
+                           // Generate the data for pre-population
                             AppDB database = AppDB.getInstance(appContext, executors);
                             List<RecipeEntity> recipes = DataGenerator.generateRecipes();
                             List<StepEntity> steps = DataGenerator.generateStepsForRecipes(recipes);
@@ -73,6 +83,10 @@ public abstract class AppDB extends RoomDatabase {
 
     private static void insertData(final AppDB database, final List<RecipeEntity> recipes,
                                    final List<StepEntity> steps) {
+        // Constant for logging
+        String TAG = "called AppDB ";
+        Log.d(TAG, "insertData");
+
         database.runInTransaction(() -> {
             database.recipesDao().insertAll(recipes);
             database.stepsDao().insertAll(steps);

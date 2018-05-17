@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_loading"
+            android:id="@+id/loading_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical|center_horizontal"
@@ -28,7 +28,7 @@
             android:contentDescription="@string/cd_rv_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="GridLayoutManager"
+            app:layoutManager="LinearLayoutManager"
             app:visibleGone="@{!isLoading}"/>
 
     </LinearLayout>

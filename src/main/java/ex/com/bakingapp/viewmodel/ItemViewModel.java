@@ -19,9 +19,9 @@ public class ItemViewModel extends AndroidViewModel {
     public ObservableField<RecipeEntity> recipe = new ObservableField<>();
     private final LiveData<List<StepEntity>> observableSteps;
 
-    public ItemViewModel(@NonNull Application application, DataRepository repository, final int recipe_id) {
+    public ItemViewModel(@NonNull Application application, DataRepository repository, final int recipeId) {
         super(application);
-        int recipeId = recipe_id; // why???
+//        int recipeId = recipe_id; // why???
         observableSteps = repository.loadSteps(recipeId);
         observableRecipe = repository.loadRecipe(recipeId);
     }
