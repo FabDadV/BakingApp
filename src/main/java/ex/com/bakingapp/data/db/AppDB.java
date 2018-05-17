@@ -7,6 +7,7 @@ import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
@@ -14,6 +15,7 @@ import android.support.annotation.VisibleForTesting;
 import ex.com.bakingapp.AppExecutors;
 import ex.com.bakingapp.utils.DataGenerator;
 
+@TypeConverters(ListConverter.class)
 @Database(entities = {RecipeEntity.class, StepEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
     private static AppDB sInstance;

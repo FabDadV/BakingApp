@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /** Shows the recipe detail fragment */
     public void show(Recipe recipe) {
-        if(findViewById(R.id.right_container) == null) {
+        if(findViewById(R.id.fragment_container) == null) {
             StepsFragment stepsFragment = StepsFragment.forRecipe(recipe.getId());
             getSupportFragmentManager()
                     .beginTransaction()
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .addToBackStack("recipe")
-                    .replace(R.id.right_container, stepsFragment, null)
+                    .replace(R.id.fragment_container, stepsFragment, null)
                     .commit();
         }
     }
