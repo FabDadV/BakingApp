@@ -14,7 +14,7 @@ import ex.com.bakingapp.data.db.StepEntity;
  */
 public class DataGenerator {
     // Constant for logging
-    public static final String TAG = "called DataGenerator";
+    public static final String TAG = "called DG";
     private static final String[] FIRST = new String[]{
             "Special edition", "New", "Cheap", "Quality", "Used"};
     private static final String[] SECOND = new String[]{
@@ -51,7 +51,6 @@ public class DataGenerator {
         List<RecipeEntity> recipes = new ArrayList<>(FIRST.length * SECOND.length);
         // Constant for logging
         String TAG = "called ";
-        Log.d(TAG, "generateStepsForRecipes");
 
         Random rnd = new Random();
         for (int i = 0; i < FIRST.length; i++) {
@@ -59,13 +58,13 @@ public class DataGenerator {
                 RecipeEntity recipe = new RecipeEntity();
                 recipe.setId(FIRST.length * i + j + 1);
                 recipe.setName(FIRST[i] + " " + SECOND[j]);
-                recipe.setIngredients(generateIngredientsForRecipes(rnd.nextInt(7)));
-                recipe.setServings(rnd.nextInt(7));
+                recipe.setIngredients(generateIngredientsForRecipes(rnd.nextInt(7)+3));
+                recipe.setServings(rnd.nextInt(7)+1);
                 recipe.setImage(recipe.getName() + " " + DESCRIPTION[j]);
                 recipes.add(recipe);
             }
         }
-        Log.d(TAG, "Generate Recipes");
+        Log.d(TAG, "generateRecipes");
         return recipes;
     }
     private static String generateIngredientsForRecipes(int number) {

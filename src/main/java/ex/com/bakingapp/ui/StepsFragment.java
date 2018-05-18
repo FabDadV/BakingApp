@@ -1,6 +1,8 @@
 package ex.com.bakingapp.ui;
 
 import java.util.List;
+
+import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ex.com.bakingapp.R;
+import ex.com.bakingapp.data.db.Recipe;
 import ex.com.bakingapp.databinding.StepsFragmentBinding;
 import ex.com.bakingapp.data.db.Step;
 import ex.com.bakingapp.data.db.StepEntity;
@@ -37,7 +40,9 @@ public class StepsFragment extends Fragment {
     private final StepClickCallback stepClickCallback = new StepClickCallback() {
         @Override
         public void onClick(Step step) {
-            // no-op
+//                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                    ((MainActivity) getActivity()).showStep(step);
+//                }
         }
     };
     @Override

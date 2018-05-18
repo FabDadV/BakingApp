@@ -6,4 +6,6 @@
     <string name="cd_rv_list">RecycleView</string>
     <string name="cd_details_list">Details list</string>
     <string name="cd_recipe_name">Name of the recipe</string>
+    <string name="make_fragment">Make fragment</string>
+    <string name="bon_app">Bon Appetit</string>
 </resources>

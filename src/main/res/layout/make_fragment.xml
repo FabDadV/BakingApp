@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--
+    <data>
+        <variable
+            name="step"
+            type="ex.com.bakingapp.data.db.Step" />
+        <variable
+    </data>
+-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.MakeFragment">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bon_appetit"
+            android:contentDescription="@string/bon_app"
+            android:src="@drawable/bon_appetit" />
+<!--
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{step.videoURL" />
+        <include
+            layout="@layout/step_item"
+            app:step="@{stepViewModel.step}"/>
+-->
+    </LinearLayout>
+</layout>
