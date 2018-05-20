@@ -38,14 +38,11 @@ public class StepsFragment extends Fragment {
         binding.detailsList.setAdapter(stepsAdapter);
         return binding.getRoot();
     }
-    private final StepClickCallback stepClickCallback = new StepClickCallback() {
-        @Override
-        public void onClick(Step step) {
+    private final StepClickCallback stepClickCallback = step -> {
 //                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                    ((MainActivity) getActivity()).showStep(step);
+                ((MainActivity) getActivity()).showStep(step);
 //                }
-       }
-    };
+   };
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -58,22 +55,14 @@ public class StepsFragment extends Fragment {
     }
     private void subscribeToModel(final ItemViewModel model) {
         // Observe recipe data
-        model.getObservableRecipe().observe(this, new Observer<RecipeEntity>() {
-            @Override
-            public void onChanged(@Nullable RecipeEntity recipeEntity) {
-                model.setRecipe(recipeEntity);
-            }
-        });
+        model.getObservableRecipe().observe(this, recipeEntity -> model.setRecipe(recipeEntity));
         // Observe steps
-        model.getSteps().observe(this, new Observer<List<StepEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<StepEntity> steps) {
-                if (steps != null) {
-                    binding.setIsLoading(false);
-                    stepsAdapter.setStepList(steps);
-                } else {
-                    binding.setIsLoading(true);
-                }
+        model.getSteps().observe(this, steps -> {
+            if (steps != null) {
+                binding.setIsLoading(false);
+                stepsAdapter.setStepList(steps);
+            } else {
+                binding.setIsLoading(true);
             }
         });
     }

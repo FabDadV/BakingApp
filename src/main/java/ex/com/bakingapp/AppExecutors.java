@@ -28,7 +28,7 @@ public class AppExecutors {
     public Executor networkIO() { return this.networkIO; }
     public Executor mainThread() { return this.mainThread; }
     private static class MainThreadExecutor implements Executor {
-        private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+        private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
         @Override
         public void execute(@NonNull Runnable command) { mainThreadHandler.post(command); }
     }

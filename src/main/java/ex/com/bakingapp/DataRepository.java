@@ -14,7 +14,7 @@ import ex.com.bakingapp.data.db.StepEntity;
 public class DataRepository {
     private static DataRepository sInstance;
     private final AppDB appDB;
-    private MediatorLiveData<List<RecipeEntity>> observableRecipes;
+    private final MediatorLiveData<List<RecipeEntity>> observableRecipes;
 
     private DataRepository(final AppDB database) {
         appDB = database;
@@ -50,12 +50,9 @@ public class DataRepository {
     }
     public StepEntity loadEntity(final int recipeId, final int stepId) {
         StepEntity step = new StepEntity();
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                StepEntity entity = new StepEntity();
-                entity = appDB.stepsDao().getByRecipeId(recipeId, stepId);
-            }
+        AppExecutors.getInstance().diskIO().execute(() -> {
+            StepEntity entity = new StepEntity();
+            entity = appDB.stepsDao().getByRecipeId(recipeId, stepId);
         });
         return step;
     }

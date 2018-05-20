@@ -1,6 +1,5 @@
 package ex.com.bakingapp.ui;
 
-import android.arch.lifecycle.LiveData;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,11 +28,6 @@ public class MakeFragment extends Fragment {
     private static final String KEY_RECIPE_ID = "recipe-id";
     private static final String KEY_STEP_ID = "step-id";
     private AppDB appDB;
-    // TODO: Rename and change types of parameters
-/*
-    private int  pId;
-    private int sId;
-*/
     // TODO: Define Listener
 //    private OnFragmentInteractionListener mListener;
 

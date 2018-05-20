@@ -16,7 +16,7 @@ import ex.com.bakingapp.data.db.StepEntity;
 
 public class ItemViewModel extends AndroidViewModel {
     private final LiveData<RecipeEntity> observableRecipe;
-    public ObservableField<RecipeEntity> recipe = new ObservableField<>();
+    public final ObservableField<RecipeEntity> recipe = new ObservableField<>();
     private final LiveData<List<StepEntity>> observableSteps;
 
     public ItemViewModel(@NonNull Application application, DataRepository repository, final int recipeId) {

@@ -46,27 +46,21 @@ public class ListFragment extends Fragment {
     }
     private void subscribeUi(ListViewModel viewModel) {
         // Update the list when the data changes
-        viewModel.getRecipes().observe(this, new Observer<List<RecipeEntity>>() {
-            @Override
-            public void onChanged(@Nullable List<RecipeEntity> recipes) {
-                if (recipes != null) {
-                    listBinding.setIsLoading(false);
-                    recipeAdapter.setRecipeList(recipes);
-                } else {
-                    listBinding.setIsLoading(true);
-                }
-                // espresso does not know how to wait for data binding's loop so we execute changes
-                // sync.
-                listBinding.executePendingBindings();
+        viewModel.getRecipes().observe(this, recipes -> {
+            if (recipes != null) {
+                listBinding.setIsLoading(false);
+                recipeAdapter.setRecipeList(recipes);
+            } else {
+                listBinding.setIsLoading(true);
             }
+            // espresso does not know how to wait for data binding's loop so we execute changes
+            // sync.
+            listBinding.executePendingBindings();
         });
     }
-    private final RecipeClickCallback recipeClickCallback = new RecipeClickCallback() {
-        @Override
-        public void onClick(Recipe recipe) {
-            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((MainActivity) getActivity()).show(recipe);
-            }
+    private final RecipeClickCallback recipeClickCallback = recipe -> {
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+            ((MainActivity) getActivity()).show(recipe);
         }
     };
     /* https://stackoverflow.com/questions/33575731/gridlayoutmanager-how-to-auto-fit-columns
