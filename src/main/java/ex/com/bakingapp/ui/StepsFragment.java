@@ -23,6 +23,7 @@ import ex.com.bakingapp.viewmodel.ItemViewModel;
 
 public class StepsFragment extends Fragment {
     private static final String KEY_RECIPE_ID = "recipe-id";
+    private static final String KEY_STEP_ID = "step-id";
     private StepsFragmentBinding binding;
     private StepsAdapter stepsAdapter;
 
@@ -43,7 +44,7 @@ public class StepsFragment extends Fragment {
 //                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
                     ((MainActivity) getActivity()).showStep(step);
 //                }
-        }
+       }
     };
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

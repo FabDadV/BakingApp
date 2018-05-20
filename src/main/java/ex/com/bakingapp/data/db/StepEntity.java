@@ -1,11 +1,9 @@
 package ex.com.bakingapp.data.db;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "steps", indices = {@Index(value = {"recipeId"})})
 public class StepEntity implements Step {
@@ -22,7 +20,7 @@ public class StepEntity implements Step {
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     @Override
-    public int getStepId() { return id; }
+    public int getStepId() { return stepId; }
     public void setStepId(int stepId) { this.stepId = stepId; }
     @Override
     public int getRecipeId() {return recipeId; }
@@ -50,6 +48,7 @@ public class StepEntity implements Step {
         this.shortDescription = shortDescription;
         this.description = description;
         this.videoURL = videoURL;
+        this.thumbnailURL = thumbnailURL;
     }
     public StepEntity(Step step) {
         this.id = step.getId();
@@ -58,5 +57,6 @@ public class StepEntity implements Step {
         this.shortDescription = step.getShortDescription();
         this.description = step.getDescription();
         this.videoURL = step.getVideoURL();
+        this.thumbnailURL = step.getThumbnailURL();
     }
 }

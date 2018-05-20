@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /** Shows the recipe detail fragment */
     public void showStep(Step step) {
-        MakeFragment makeFragment = MakeFragment.forStep(step.getId());
+        MakeFragment makeFragment = MakeFragment.forStep(step.getRecipeId(), step.getStepId());
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("step")

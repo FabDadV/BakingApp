@@ -21,7 +21,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
     public StepsAdapter(@Nullable StepClickCallback clickCallback) {
         stepClickCallback = clickCallback;
     }
-
     public void setStepList(final List<? extends Step> stepList) {
         if (steps == null) {
             steps = stepList;

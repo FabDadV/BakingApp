@@ -32,4 +32,18 @@ public class AppExecutors {
         @Override
         public void execute(@NonNull Runnable command) { mainThreadHandler.post(command); }
     }
+    // For Singleton instantiation
+    private static final Object LOCK = new Object();
+    private static AppExecutors sInstance;
+
+    public static AppExecutors getInstance() {
+        if (sInstance == null) {
+            synchronized (LOCK) {
+                sInstance = new AppExecutors(Executors.newSingleThreadExecutor(),
+                        Executors.newFixedThreadPool(3),
+                        new MainThreadExecutor());
+            }
+        }
+        return sInstance;
+    }
 }
