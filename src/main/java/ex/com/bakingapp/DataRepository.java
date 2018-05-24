@@ -1,9 +1,6 @@
 package ex.com.bakingapp;
 
 import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
-
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 
@@ -55,5 +52,8 @@ public class DataRepository {
             entity = appDB.stepsDao().getByRecipeId(recipeId, stepId);
         });
         return step;
+    }
+    public LiveData<StepEntity> loadStep(final int recipeId, final int stepId) {
+        return appDB.stepsDao().loadByRecipeId(recipeId,stepId);
     }
 }

@@ -2,7 +2,6 @@ package ex.com.bakingapp.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import ex.com.bakingapp.R;
 import ex.com.bakingapp.data.db.Recipe;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
             ListFragment fragment = new ListFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.fragment_container, fragment, ListFragment.TAG)
+                    .add(R.id.fragment_container, fragment, null)
                     .commit();
         }
     }
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /** Shows the recipe detail fragment */
     public void showStep(Step step) {
-        MakeFragment makeFragment = MakeFragment.forStep(step.getRecipeId(), step.getStepId());
+        MakeFragment makeFragment = MakeFragment.forStep(step);
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("step")

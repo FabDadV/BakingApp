@@ -1,7 +1,6 @@
 package ex.com.bakingapp.utils;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,8 +12,6 @@ import ex.com.bakingapp.data.db.StepEntity;
  * Generates data to test the database
  */
 public class DataGenerator {
-    // Constant for logging
-    public static final String TAG = "called DG";
     private static final String[] FIRST = new String[]{
             "Special edition", "New", "Cheap", "Quality", "Used"};
     private static final String[] SECOND = new String[]{
@@ -71,7 +68,8 @@ public class DataGenerator {
         String ingredients = "";
         Random rnd = new Random();
         for (int i = 0; i < number; i++) {
-            ingredients = ingredients.concat(INGREDIENTS[i]).concat(String.valueOf(rnd.nextInt(7)+1)).concat(" tbsp;");
+            ingredients = ingredients.concat(INGREDIENTS[i])
+                    .concat(String.valueOf(rnd.nextInt(5)+1)).concat(" tbsp;");
         }
         return ingredients;
     }
@@ -79,13 +77,13 @@ public class DataGenerator {
             final List<RecipeEntity> recipes) {
         // Constant for logging
         String TAG = "called ";
-        Log.d(TAG, "generateStepsForRecipes");
+        Log.d(TAG, "generateSteps");
 
         List<StepEntity> steps = new ArrayList<>();
-        int id = 0;
+        int id = 1;
         Random rnd = new Random();
         for (Recipe recipe : recipes) {
-            int stepsNumber = rnd.nextInt(12)+3;
+            int stepsNumber = rnd.nextInt(7)+3;
             for (int i = 0; i < stepsNumber; i++) {
                 StepEntity step = new StepEntity();
                 step.setId(id);
@@ -93,10 +91,10 @@ public class DataGenerator {
                 step.setStepId(i+1);
                 step.setShortDescription(STEPS[i]);
                 step.setDescription(STEPS[i] + " for " + recipe.getName());
-                int k = rnd.nextInt(7);
+                int k = rnd.nextInt(9);
                 String str = (k>5 ? "" : VIDEOS[k]);
                 step.setVideoURL(str);
-                k = rnd.nextInt(12);
+                k = rnd.nextInt(17);
                 str = (k>5 ? "" : THUMBNAILS[k]);
                 step.setThumbnailURL(str);
                 id++;

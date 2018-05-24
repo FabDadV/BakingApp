@@ -21,19 +21,14 @@ public class ItemViewModel extends AndroidViewModel {
 
     public ItemViewModel(@NonNull Application application, DataRepository repository, final int recipeId) {
         super(application);
-//        int recipeId = recipe_id; // why???
         observableSteps = repository.loadSteps(recipeId);
         observableRecipe = repository.loadRecipe(recipeId);
     }
-    /**
-     * Expose the LiveData Steps query so the UI can observe it.
-     */
+    /* Expose the LiveData Steps query so the UI can observe it. */
     public LiveData<List<StepEntity>> getSteps() { return observableSteps; }
     public LiveData<RecipeEntity> getObservableRecipe() { return observableRecipe; }
     public void setRecipe(RecipeEntity recipe) { this.recipe.set(recipe); }
-    /**
-     * A creator is used to inject the recipe ID into the ViewModel
-     * <p>
+    /* A creator is used to inject the recipe ID into the ViewModel
      * This creator is to showcase how to inject dependencies into ViewModels. It's not
      * actually necessary in this case, as the recipe ID can be passed in a public method.
      */

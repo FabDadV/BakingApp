@@ -1,9 +1,5 @@
 package ex.com.bakingapp.ui;
 
-import java.util.List;
-
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -14,16 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ex.com.bakingapp.R;
-import ex.com.bakingapp.data.db.Recipe;
 import ex.com.bakingapp.databinding.StepsFragmentBinding;
-import ex.com.bakingapp.data.db.Step;
-import ex.com.bakingapp.data.db.StepEntity;
-import ex.com.bakingapp.data.db.RecipeEntity;
 import ex.com.bakingapp.viewmodel.ItemViewModel;
 
 public class StepsFragment extends Fragment {
     private static final String KEY_RECIPE_ID = "recipe-id";
-    private static final String KEY_STEP_ID = "step-id";
     private StepsFragmentBinding binding;
     private StepsAdapter stepsAdapter;
 

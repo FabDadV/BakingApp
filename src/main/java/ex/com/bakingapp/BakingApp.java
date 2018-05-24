@@ -13,6 +13,8 @@ public class BakingApp extends Application {
     public void onCreate() {
         super.onCreate();
         appExecutors = new AppExecutors();
+
+
         Stetho.initializeWithDefaults(this);
     }
     public AppDB getDatabase() { return AppDB.getInstance(this, appExecutors);}

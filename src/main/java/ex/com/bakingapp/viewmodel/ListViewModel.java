@@ -18,13 +18,10 @@ public class ListViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableRecipes.setValue(null);
         // Livedata
-        LiveData<List<RecipeEntity>> recipes = ((BakingApp) application).getRepository()
-                .getRecipes();
+        LiveData<List<RecipeEntity>> recipes = ((BakingApp) application).getRepository().getRecipes();
         // observe the changes of the recipes from the database and forward them
         observableRecipes.addSource(recipes, observableRecipes::setValue);
     }
-    /**
-     * Expose the LiveData Recipes query so the UI can observe it.
-     */
+    /* Expose the LiveData Recipes query so the UI can observe it. */
     public LiveData<List<RecipeEntity>> getRecipes() { return observableRecipes; }
 }

@@ -20,6 +20,9 @@ public interface StepsDao {
     @Query("SELECT * FROM steps WHERE recipeId = :recipeId & stepId = :stepId")
     StepEntity getByRecipeId(int recipeId, int stepId);
 
+    @Query("SELECT * FROM steps WHERE recipeId = :recipeId & stepId = :stepId")
+    LiveData<StepEntity> loadByRecipeId(int recipeId, int stepId);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<StepEntity> stepList);
 }

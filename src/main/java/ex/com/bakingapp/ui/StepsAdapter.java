@@ -1,14 +1,13 @@
 package ex.com.bakingapp.ui;
 
+import java.util.List;
+import java.util.Objects;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import java.util.List;
-import java.util.Objects;
 
 import ex.com.bakingapp.R;
 import ex.com.bakingapp.data.db.Step;

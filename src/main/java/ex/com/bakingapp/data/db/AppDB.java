@@ -39,8 +39,7 @@ public abstract class AppDB extends RoomDatabase {
         }
         return sInstance;
     }
-    /**
-     * Build the database. {@link Builder#build()} only sets up the database configuration and
+    /* Build the database. {@link Builder#build()} only sets up the database configuration and
      * creates a new instance of the database.
      * The SQLite database is only created when it's accessed for the first time.
      */
