@@ -1,0 +1,43 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id = "@+id/widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#09C"
+    android:padding="@dimen/widget_margin">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/bon_app"
+        android:src="@drawable/bon_widget" />
+
+    <TextView
+        android:id="@+id/wtv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#09C"
+        android:contentDescription="@string/recipe"
+        android:text="@string/recipe"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/wtv_ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#09C"
+        android:contentDescription="@string/ingredients"
+        android:minHeight="@dimen/widget_min_height"
+        android:text="@string/ingredients"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:layout_weight="1"
+        android:textStyle="bold|italic" />
+
+</LinearLayout>

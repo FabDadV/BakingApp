@@ -1,5 +1,6 @@
 package ex.com.bakingapp.data.db;
 
+import java.util.ArrayList;
 import java.util.List;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -11,9 +12,16 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
+import android.widget.Toast;
 
 import ex.com.bakingapp.AppExecutors;
+import ex.com.bakingapp.BakingApp;
+import ex.com.bakingapp.data.api.RecipesList;
 import ex.com.bakingapp.utils.DataGenerator;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 // @TypeConverters(ListConverter.class)
 @Database(entities = {RecipeEntity.class, StepEntity.class}, version = 1, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
@@ -25,9 +33,7 @@ public abstract class AppDB extends RoomDatabase {
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 
     public static AppDB getInstance(final Context context, final AppExecutors executors) {
-        // Constant for logging
-        String TAG = "called AppDB ";
-        Log.d(TAG, "getInstance");
+        Log.d("TAG", " getInstance");
 
         if (sInstance == null) {
             synchronized (AppDB.class) {
@@ -44,9 +50,8 @@ public abstract class AppDB extends RoomDatabase {
      * The SQLite database is only created when it's accessed for the first time.
      */
     private static AppDB buildDatabase(final Context appContext, final AppExecutors executors) {
-        // Constant for logging
-        String TAG = "called AppDB ";
-        Log.d(TAG, "buildDatabase");
+//        posts = new ArrayList<>();
+        Log.d("TAG", " buildDatabase");
 
         return Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)
                 .addCallback(new Callback() {
@@ -55,9 +60,27 @@ public abstract class AppDB extends RoomDatabase {
                         super.onCreate(db);
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
-                            Log.d(TAG, "DataGenerator");
+                            Log.d("TAG", " CreateDB");
                             addDelay();
-                            Log.d(TAG, "addDelay()");
+                            Log.d("TAG", "addDelay()");
+
+/*
+                            BakingApp.getApi().loadRecipesList().enqueue(new Callback<RecipesList>() {
+                                @Override
+                                public void onResponse(Call<RecipesList> call, Response<RecipesList> response) {
+                                    RecipesList recipesList = response.body();
+
+                                }
+                                @Override
+                                public void onFailure(Call<RecipesList> call, Throwable t) {
+                                    //Проверка на ошибку
+                                    Toast.makeText(getContext(), "An error occurred during networking",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+*/
+
+
                            // Generate the data for pre-population
                             AppDB database = AppDB.getInstance(appContext, executors);
                             List<RecipeEntity> recipes = DataGenerator.generateRecipes();
