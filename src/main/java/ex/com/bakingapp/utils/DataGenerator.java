@@ -13,9 +13,9 @@ import ex.com.bakingapp.data.db.StepEntity;
  */
 public class DataGenerator {
     private static final String[] FIRST = new String[]{
-            "Special edition", "New", "Cheap", "Quality", "Used"};
-    private static final String[] SECOND = new String[]{
             "Three-headed Monkey", "Rubber Chicken", "Pint of Grog", "Monocle"};
+    private static final String[] SECOND = new String[]{
+            "Special edition", "New", "Cheap", "Quality", "Used"};
     private static final String[] DESCRIPTION = new String[]{
             "is finally here", "is recommended by Stan S. Stanman",
             "is the best sold recipe on Mêlée Island", "is \uD83D\uDCAF", "is ❤️", "is fine"};
@@ -45,21 +45,22 @@ public class DataGenerator {
             "thumb/0/08/Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg/600px-Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg"
     };
     public static List<RecipeEntity> generateRecipes() {
-        List<RecipeEntity> recipes = new ArrayList<>(FIRST.length * SECOND.length);
+        List<RecipeEntity> recipes = new ArrayList<>(FIRST.length);
+//        List<RecipeEntity> recipes = new ArrayList<>(FIRST.length * SECOND.length);
         // Constant for logging
         String TAG = "called ";
 
         Random rnd = new Random();
         for (int i = 0; i < FIRST.length; i++) {
-            for (int j = 0; j < SECOND.length; j++) {
+//            for (int j = 0; j < SECOND.length; j++) {
                 RecipeEntity recipe = new RecipeEntity();
-                recipe.setId(FIRST.length * i + j + 1);
-                recipe.setName(FIRST[i] + " " + SECOND[j]);
+                recipe.setId(FIRST.length * i + 1);
+                recipe.setName(FIRST[i]);
                 recipe.setIngredients(generateIngredientsForRecipes(rnd.nextInt(7)+3));
                 recipe.setServings(rnd.nextInt(7)+1);
-                recipe.setImage(recipe.getName() + " " + DESCRIPTION[j]);
+                recipe.setImage(recipe.getName() + " " + DESCRIPTION[i]);
                 recipes.add(recipe);
-            }
+//            }
         }
         Log.d(TAG, "generateRecipes");
         return recipes;

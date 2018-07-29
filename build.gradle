@@ -28,23 +28,23 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     // Add Recycler view dependencies; must match SDK version
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
     // FAB dependencies
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation "com.android.support:design:$androidSupportVersion"
+    implementation "com.android.support:cardview-v7:$androidSupportVersion"
     // Add Room dependencies
-    implementation 'android.arch.persistence.room:runtime:1.1.0'
-    implementation 'com.android.support:support-v4:27.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
+    implementation "com.android.support:support-v4:$androidSupportVersion"
+    implementation "android.arch.persistence.room:runtime:$aacVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$aacVersion"
     // Add ViewModel & LiveData dependencies
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+    implementation "android.arch.lifecycle:extensions:$aacVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$aacVersion"
     // Add Retrofit2 & Gson-Converter dependencies
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     // for easy DB debugging
     implementation 'com.facebook.stetho:stetho:1.5.0'
     // Testing
@@ -54,9 +54,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    androidTestImplementation "com.android.support:support-annotations:$androidSupportVersion"
     // optional - Test helpers for Room and LiveData
-    testImplementation 'android.arch.persistence.room:testing:1.1.0'
-    testImplementation 'android.arch.core:core-testing:1.1.1'
-
+    testImplementation "android.arch.persistence.room:testing:$aacVersion"
+    testImplementation "android.arch.core:core-testing:$aacVersion"
 }

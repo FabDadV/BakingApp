@@ -7,7 +7,6 @@ import ex.com.bakingapp.data.api.QueryApi;
 import ex.com.bakingapp.data.db.AppDB;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 /**
  * Android Application class. Used for accessing singletons.
  */

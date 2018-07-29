@@ -12,15 +12,14 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.VisibleForTesting;
 import android.util.Log;
-import android.widget.Toast;
 
-import ex.com.bakingapp.AppExecutors;
-import ex.com.bakingapp.BakingApp;
-import ex.com.bakingapp.data.api.RecipesList;
-import ex.com.bakingapp.utils.DataGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import ex.com.bakingapp.AppExecutors;
+import ex.com.bakingapp.BakingApp;
+import ex.com.bakingapp.utils.DataGenerator;
 
 // @TypeConverters(ListConverter.class)
 @Database(entities = {RecipeEntity.class, StepEntity.class}, version = 1, exportSchema = false)
@@ -50,7 +49,6 @@ public abstract class AppDB extends RoomDatabase {
      * The SQLite database is only created when it's accessed for the first time.
      */
     private static AppDB buildDatabase(final Context appContext, final AppExecutors executors) {
-//        posts = new ArrayList<>();
         Log.d("TAG", " buildDatabase");
 
         return Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)
@@ -58,32 +56,29 @@ public abstract class AppDB extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
+                        ArrayList<RecipeEntity> recipes = new ArrayList<RecipeEntity>();
+
+                        BakingApp.getApi().getData().enqueue(new retrofit2.Callback<List<RecipeEntity>>() {
+                            @Override
+                            public void onResponse(Call<List<RecipeEntity>> call, Response<List<RecipeEntity>> response) {
+                                recipes.addAll(response.body());
+                            }
+                            @Override
+                            public void onFailure(Call<List<RecipeEntity>> call, Throwable t) {
+                                //Проверка на ошибку
+                                Log.d("TAG", "Error" + t.toString());
+                            }
+                        });
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
                             Log.d("TAG", " CreateDB");
                             addDelay();
                             Log.d("TAG", "addDelay()");
 
-/*
-                            BakingApp.getApi().loadRecipesList().enqueue(new Callback<RecipesList>() {
-                                @Override
-                                public void onResponse(Call<RecipesList> call, Response<RecipesList> response) {
-                                    RecipesList recipesList = response.body();
 
-                                }
-                                @Override
-                                public void onFailure(Call<RecipesList> call, Throwable t) {
-                                    //Проверка на ошибку
-                                    Toast.makeText(getContext(), "An error occurred during networking",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            });
-*/
-
-
-                           // Generate the data for pre-population
+                            // Generate the data for pre-population
                             AppDB database = AppDB.getInstance(appContext, executors);
-                            List<RecipeEntity> recipes = DataGenerator.generateRecipes();
+//                            recipes = DataGenerator.generateRecipes();
                             List<StepEntity> steps = DataGenerator.generateStepsForRecipes(recipes);
                             insertData(database, recipes, steps);
                             // notify that the database was created and it's ready to be used
