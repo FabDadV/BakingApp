@@ -42,9 +42,8 @@ public class DataRepository {
     public LiveData<List<StepEntity>> loadSteps(final int recipeId) {
         return appDB.stepsDao().loadByParentId(recipeId);
     }
-    public MediatorLiveData<List<RecipeEntity>> getObservableRecipes() {
-        return observableRecipes;
-    }
+    public MediatorLiveData<List<RecipeEntity>> getObservableRecipes() {return observableRecipes;}
+
     public StepEntity loadEntity(final int recipeId, final int stepId) {
         StepEntity step = new StepEntity();
         AppExecutors.getInstance().diskIO().execute(() -> {

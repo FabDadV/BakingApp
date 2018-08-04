@@ -17,8 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import ex.com.bakingapp.AppExecutors;
 import ex.com.bakingapp.BakingApp;
+import ex.com.bakingapp.AppExecutors;
 import ex.com.bakingapp.utils.DataGenerator;
 
 // @TypeConverters(ListConverter.class)
@@ -26,7 +26,7 @@ import ex.com.bakingapp.utils.DataGenerator;
 public abstract class AppDB extends RoomDatabase {
     private static AppDB sInstance;
     @VisibleForTesting
-    public static final String DATABASE_NAME = "baking-app";
+    public static final String DATABASE_NAME = "baking_app";
     public abstract RecipesDao recipesDao();
     public abstract StepsDao stepsDao();
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
@@ -51,12 +51,6 @@ public abstract class AppDB extends RoomDatabase {
     private static AppDB buildDatabase(final Context appContext, final AppExecutors executors) {
         Log.d("TAG", " buildDatabase");
 
-        return Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)
-                .addCallback(new Callback() {
-                    @Override
-                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                        super.onCreate(db);
-
 /*
                         ArrayList<RecipeEntity> recipes = new ArrayList<RecipeEntity>();
 
@@ -72,6 +66,13 @@ public abstract class AppDB extends RoomDatabase {
                             }
                         });
 */
+
+        return Room.databaseBuilder(appContext, AppDB.class, DATABASE_NAME)
+                .addCallback(new Callback() {
+                    @Override
+                    public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                        super.onCreate(db);
+
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
                             Log.d("TAG", " CreateDB");
@@ -98,7 +99,7 @@ public abstract class AppDB extends RoomDatabase {
             setDatabaseCreated();
         }
     }
-    private void setDatabaseCreated(){ isDatabaseCreated.postValue(true);}
+    private void setDatabaseCreated(){isDatabaseCreated.postValue(true);}
 
     private static void insertData(final AppDB database, final List<RecipeEntity> recipes,
                                    final List<StepEntity> steps) {

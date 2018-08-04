@@ -29,14 +29,15 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$androidSupportVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    // Add Recycler view dependencies; must match SDK version
-    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
+    implementation "com.android.support:support-v4:$androidSupportVersion"
     // FAB dependencies
     implementation "com.android.support:design:$androidSupportVersion"
+    // Add RecyclerView & CardView dependencies; must match SDK version
+    implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
     implementation "com.android.support:cardview-v7:$androidSupportVersion"
+    // Constraint layout:
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     // Add Room dependencies
-    implementation "com.android.support:support-v4:$androidSupportVersion"
     implementation "android.arch.persistence.room:runtime:$aacVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$aacVersion"
     // Add ViewModel & LiveData dependencies
