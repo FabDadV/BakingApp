@@ -56,6 +56,8 @@ public abstract class AppDB extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
+
+/*
                         ArrayList<RecipeEntity> recipes = new ArrayList<RecipeEntity>();
 
                         BakingApp.getApi().getData().enqueue(new retrofit2.Callback<List<RecipeEntity>>() {
@@ -69,6 +71,7 @@ public abstract class AppDB extends RoomDatabase {
                                 Log.d("TAG", "Error" + t.toString());
                             }
                         });
+*/
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation
                             Log.d("TAG", " CreateDB");
@@ -78,7 +81,7 @@ public abstract class AppDB extends RoomDatabase {
 
                             // Generate the data for pre-population
                             AppDB database = AppDB.getInstance(appContext, executors);
-//                            recipes = DataGenerator.generateRecipes();
+                            List<RecipeEntity> recipes = DataGenerator.generateRecipes();
                             List<StepEntity> steps = DataGenerator.generateStepsForRecipes(recipes);
                             insertData(database, recipes, steps);
                             // notify that the database was created and it's ready to be used
