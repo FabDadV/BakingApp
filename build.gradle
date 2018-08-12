@@ -37,12 +37,12 @@ dependencies {
     implementation "com.android.support:cardview-v7:$androidSupportVersion"
     // Constraint layout:
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    // Architecture components
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
     // Add Room dependencies
-    implementation "android.arch.persistence.room:runtime:$aacVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$aacVersion"
-    // Add ViewModel & LiveData dependencies
-    implementation "android.arch.lifecycle:extensions:$aacVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$aacVersion"
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
     // Add Retrofit2 & Gson-Converter dependencies
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
