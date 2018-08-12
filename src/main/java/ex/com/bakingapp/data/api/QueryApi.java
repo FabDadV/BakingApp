@@ -8,5 +8,5 @@ import retrofit2.http.GET;
 
 public interface QueryApi {
     @GET("http://go.udacity.com/android-baking-app-json")
-    Call<List<RecipeEntity>> getData();
+    Call<RecipesData> getData();
 }
