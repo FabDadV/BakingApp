@@ -38,11 +38,14 @@ public class DataGenerator {
     };
     private static final String[] THUMBNAILS = new String[]{
             "c/ca/Bosna_mit_2_Bratw%C3%BCrsten.jpg",
-            "thumb/5/50/Grilled_ham_and_cheese_014.JPG/800px-Grilled_ham_and_cheese_014.jpg",
+            "thumb/5/50/Grilled_ham_and_cheese_014.JPG",
+            "/800px-Grilled_ham_and_cheese_014.jpg",
             "4/48/Chivito1.jpg",
             "thumb/4/4f/Club_sandwich.png/800px-Club_sandwich.png",
-            "thumb/a/a3/Sandwich_de_Medianoche.jpg/800px-Sandwich_de_Medianoche.jpg",
-            "thumb/0/08/Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg/600px-Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg"
+            "thumb/a/a3/Sandwich_de_Medianoche.jpg",
+            "/800px-Sandwich_de_Medianoche.jpg",
+            "thumb/0/08/Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg",
+            "/600px-Steamed_Sandwich%2Ctaken_by_LeoAlmighty.jpg"
     };
     public static List<RecipeEntity> generateRecipes() {
         List<RecipeEntity> recipes = new ArrayList<>(FIRST.length);
