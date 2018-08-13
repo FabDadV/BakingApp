@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialKeyguardLayout="@layout/backing_widget"
     android:initialLayout="@layout/backing_widget"
-    android:minHeight="110dp"
+    android:minHeight="220dp"
     android:minWidth="240dp"
     android:previewImage="@drawable/bon_widget"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="6000000"
+    android:updatePeriodMillis="60000000"
     android:widgetCategory="home_screen"></appwidget-provider>

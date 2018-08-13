@@ -1,16 +1,16 @@
 package ex.com.bakingapp.data.db;
 
-import android.arch.persistence.room.TypeConverter;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Arrays;
+import android.arch.persistence.room.TypeConverter;
 
 public class ListConverter {
     @TypeConverter
     public String fromList(List<String> stringList) {
-        String data = null;
-        for (String str : stringList) { data.concat(str + "\n"); }
+        StringBuilder data = new StringBuilder();
+        for (String str : stringList) {data.append(str).append("\n");}
 //                stringList.stream().collect(Collectors.joining("\n"));
-        return data;
+        return data.toString();
     }
     @TypeConverter
     public List<String> toList(String data) {

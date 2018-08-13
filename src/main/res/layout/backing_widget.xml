@@ -1,10 +1,10 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id = "@+id/widget"
+    android:id="@+id/widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#09C"
+    android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 
     <ImageView
@@ -23,7 +23,7 @@
         android:contentDescription="@string/recipe"
         android:text="@string/recipe"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
@@ -32,23 +32,19 @@
         android:layout_height="wrap_content"
         android:background="#09C"
         android:contentDescription="@string/ingredients"
-        android:minHeight="@dimen/widget_min_height"
         android:text="@string/ingredients"
         android:textColor="#ffffff"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/wtv_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#09C"
-        android:contentDescription="@string/list"
-        android:minHeight="@dimen/widget_min_height"
-        android:text="@string/list"
-        android:textColor="#ffffff"
-        android:textSize="12sp"
-        android:layout_weight="1"
-        android:textStyle="bold|italic" />
-
+            android:id="@+id/wtv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#09C"
+            android:contentDescription="@string/list"
+            android:text="@string/list"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
 </LinearLayout>

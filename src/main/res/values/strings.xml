@@ -10,6 +10,7 @@
     <string name="bon_app">Bon Appetit</string>
     <string name="recipe">Cheesecake</string>
     <string name="ingredients">Ingredients:</string>
-    <string name="list">Ingredients List</string>
+    <string name="list">Well, in our case, I\'ll simply make any widget that has a width less than  dp appears just a single plant widget.
+So since previously we already had our single plant view object over in our Update Plant Widgets, I copied everything over and moved it inside a new method that I called Get Single Plant Remote View.</string>
     <string name="add_widget">Add widget</string>
 </resources>
