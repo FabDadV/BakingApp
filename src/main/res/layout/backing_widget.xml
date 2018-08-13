@@ -30,11 +30,22 @@
         android:id="@+id/wtv_ingredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:background="#09C"
         android:contentDescription="@string/ingredients"
         android:minHeight="@dimen/widget_min_height"
         android:text="@string/ingredients"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/wtv_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#09C"
+        android:contentDescription="@string/list"
+        android:minHeight="@dimen/widget_min_height"
+        android:text="@string/list"
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:layout_weight="1"
