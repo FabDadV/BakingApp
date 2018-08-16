@@ -1,23 +1,40 @@
 package ex.com.bakingapp.ui;
 
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import ex.com.bakingapp.R;
 import ex.com.bakingapp.databinding.StepsFragmentBinding;
 import ex.com.bakingapp.viewmodel.ItemViewModel;
+import ex.com.bakingapp.widget.BackingWidget;
 
 public class StepsFragment extends Fragment {
     private static final String KEY_RECIPE_ID = "recipe-id";
+    private static final String EXTRA_INGRADIENTS = "extra_ings";
     private StepsFragmentBinding binding;
     private StepsAdapter stepsAdapter;
+    private String name;
+    private String text;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -43,6 +60,8 @@ public class StepsFragment extends Fragment {
                 .get(ItemViewModel.class);
         binding.setItemViewModel(model);
         subscribeToModel(model);
+//        name = model.recipe.get().getName()
+//        text = model.recipe.get().getIngredients();
     }
     private void subscribeToModel(final ItemViewModel model) {
         // Observe recipe data
@@ -64,5 +83,34 @@ public class StepsFragment extends Fragment {
         args.putInt(KEY_RECIPE_ID, recipeId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    // Creating menu: Favorite & Add Widget
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+        menuInflater.inflate(R.menu.detail_menu, menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+/*
+            case R.id.no_fav:
+
+                return true;
+*/
+            case R.id.add_widget:
+                Log.d("TAG_Wdgt", "updateWidgets" + name + text);
+                name = "Best delishiuos cake";
+                text = " bla bla bla bla";
+                Context context = getContext();
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, BackingWidget.class));
+                //Now update all widgets
+                BackingWidget.updateWidgets(context, appWidgetManager, name, text, appWidgetIds);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

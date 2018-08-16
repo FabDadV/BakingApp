@@ -3,8 +3,8 @@
     android:id="@+id/widget"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
     android:orientation="vertical"
+    android:background="#09C"
     android:padding="@dimen/widget_margin">
 
     <ImageView
@@ -23,7 +23,7 @@
         android:contentDescription="@string/recipe"
         android:text="@string/recipe"
         android:textColor="#ffffff"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size"
         android:textStyle="bold" />
 
     <TextView
