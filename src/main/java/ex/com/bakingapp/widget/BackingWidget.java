@@ -20,24 +20,13 @@ public class BackingWidget extends AppWidgetProvider {
 
         // Set the click handler to open the DetailActivity for plant ID,
         // or the MainActivity if plant ID is invalid
-//        Intent intent;
         Intent intent = new Intent(context, MainActivity.class);
-/*
-        if (itemId == PlantContract.INVALID_ITEM_ID) {
-            intent = new Intent(context, MainActivity.class);
-        } else { // Set on click to open the corresponding detail activity
-            Log.d(PlantWidgetProvider.class.getSimpleName(), "plantId=" + plantId);
-            intent = new Intent(context, PlantDetailActivity.class);
-            intent.putExtra(PlantDetailActivity.EXTRA_PLANT_ID, plantId);
-        }
-*/
-
         /* PendingIntent - обёртка для intent? которая позволяет стороннему приложению (в которое его передали)
          * запустить хранящийся внутри него Intent, от имени приложения (и теми же с полномочиями ) передавшего
          * этот PendingIntent. RemoteViews нужно связать с PendingIntent, чтобы запускать MainActivity после щелчка.
-endingIntent - wrapper for intent? which allows the third-party application (in which it was transmitted)
-          * run the Intent stored inside it, on behalf of the application (and the same with the credentials) that transmitted
-          * this PendingIntent. RemoteViews should be associated with PendingIntent to run MainActivity after clicking.
+         * endingIntent - wrapper for intent? which allows the third-party application (in which it was transmitted)
+         * run the Intent stored inside it, on behalf of the application (and the same with the credentials) that transmitted
+         * this PendingIntent. RemoteViews should be associated with PendingIntent to run MainActivity after clicking.
          */
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         // Construct the RemoteViews object
@@ -54,7 +43,7 @@ endingIntent - wrapper for intent? which allows the third-party application (in 
                                      String name, String list, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, name, list, appWidgetId);
-            Log.d("TAG", "updateW " + String.valueOf(appWidgetId));
+            Log.d("TAG", "updateWidget " + String.valueOf(appWidgetId));
         }
     }
 

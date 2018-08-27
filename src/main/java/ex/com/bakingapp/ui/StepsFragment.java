@@ -23,8 +23,9 @@ import ex.com.bakingapp.viewmodel.ItemViewModel;
 import ex.com.bakingapp.widget.BackingWidget;
 
 public class StepsFragment extends Fragment {
-    private static final String KEY_RECIPE_ID = "recipe-id";
-    private static final String EXTRA_INGRADIENTS = "extra_ings";
+    private static final String KEY_RECIPE_ID = "recipe_id";
+    private static final String RECIPE_NAME = "recipe_name";
+    private static final String EXTRA_INGREDIENTS = "extra_ings";
     private StepsFragmentBinding binding;
     private StepsAdapter stepsAdapter;
     private String name;
@@ -54,14 +55,14 @@ public class StepsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        name = getArguments().getString(RECIPE_NAME);
+        text = getArguments().getString(EXTRA_INGREDIENTS);
         ItemViewModel.Factory factory = new ItemViewModel.Factory(
                 getActivity().getApplication(), getArguments().getInt(KEY_RECIPE_ID));
         final ItemViewModel model = ViewModelProviders.of(this, factory)
                 .get(ItemViewModel.class);
         binding.setItemViewModel(model);
         subscribeToModel(model);
-//        name = model.recipe.get().getName()
-//        text = model.recipe.get().getIngredients();
     }
     private void subscribeToModel(final ItemViewModel model) {
         // Observe recipe data
@@ -77,14 +78,15 @@ public class StepsFragment extends Fragment {
         });
     }
     /** Creates recipe fragment for specific recipe ID */
-    public static StepsFragment forRecipe(int recipeId) {
+    public static StepsFragment forRecipe(int recipeId, String name, String text) {
         StepsFragment fragment = new StepsFragment();
         Bundle args = new Bundle();
         args.putInt(KEY_RECIPE_ID, recipeId);
+        args.putString(RECIPE_NAME, name);
+        args.putString(EXTRA_INGREDIENTS, text);
         fragment.setArguments(args);
         return fragment;
     }
-
     // Creating menu: Favorite & Add Widget
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
@@ -93,22 +95,14 @@ public class StepsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-/*
-            case R.id.no_fav:
-
-                return true;
-*/
             case R.id.add_widget:
-                Log.d("TAG_Wdgt", "updateWidgets" + name + text);
-                name = "Best delishiuos cake";
-                text = " bla bla bla bla";
+//                Log.d("TAG", "updateWidgets: " + name + " : " + text);
                 Context context = getContext();
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, BackingWidget.class));
                 //Now update all widgets
                 BackingWidget.updateWidgets(context, appWidgetManager, name, text, appWidgetIds);
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

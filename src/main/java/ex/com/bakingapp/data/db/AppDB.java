@@ -69,10 +69,6 @@ public abstract class AppDB extends RoomDatabase {
 
                             List<RecipeEntity> recipes = getRecipesList(recipesApi);
                             List<StepEntity> steps = getStepsForRecipes(recipesApi);
-/*
-                            List<RecipeEntity> recipes = DataGenerator.generateRecipes();
-                            List<StepEntity> steps = DataGenerator.generateStepsForRecipes(recipes);
-*/
                             insertData(database, recipes, steps);
                             Log.d("TAG", "insertData");
                             // notify that the database was created and it's ready to be used

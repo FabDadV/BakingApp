@@ -19,10 +19,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{step.videoURL}" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@{step.shortDescription}" />
         <TextView
             android:layout_width="wrap_content"
@@ -31,6 +27,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@{step.videoURL}" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="@{step.thumbnailURL}" />
     </LinearLayout>
 </layout>
