@@ -10,6 +10,19 @@
     <string name="bon_app">Bon Appetit</string>
     <string name="recipe">Best delicious cakes</string>
     <string name="ingredients">Ingredients:</string>
+    <string name="big_text"> 2 Add the wet ingredients to the dry,
+        along with the carrots, raisins and half the nuts, if using.
+        Mix well to combine, then divide between the tins.
+        Bake for 25-30 mins or until a skewer inserted into the centre
+        of the cake comes out clean. If any wet mixture clings to the skewer,
+        return to the oven for 5 mins, then check again. Leave to cool in the tins.
+         3 To make the icing, beat the butter and sugar together
+        until smooth. Add half the cream cheese and beat again, then add the rest
+        (adding it bit by bit prevents the icing from splitting). Remove the cakes
+        from the tins and sandwich together with half the icing.
+        Top with the remaining icing and scatter with the remaining walnuts.
+        Will keep in the fridge for up to five days. Best eaten at room temperature.
+    </string>
     <string name="list">   </string>
     <string name="add_widget">Add widget</string>
 </resources>
