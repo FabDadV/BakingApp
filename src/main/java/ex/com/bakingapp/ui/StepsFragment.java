@@ -96,7 +96,6 @@ public class StepsFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_widget:
-//                Log.d("TAG", "updateWidgets: " + name + " : " + text);
                 Context context = getContext();
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, BackingWidget.class));
