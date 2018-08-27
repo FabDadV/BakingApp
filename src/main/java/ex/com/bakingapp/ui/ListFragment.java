@@ -18,7 +18,7 @@ import ex.com.bakingapp.viewmodel.ListViewModel;
 
 public class ListFragment extends Fragment {
     private static final String TAG = ListFragment.class.getSimpleName();
-    private static final int DEFAULT_SIZE = 160;
+    private static final int DEFAULT_SIZE = 320;
     private RecipeAdapter recipeAdapter;
     private ListFragmentBinding listBinding;
 
