@@ -20,10 +20,6 @@ android {
     dataBinding {
         enabled = true
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -50,6 +46,7 @@ dependencies {
     implementation 'com.facebook.stetho:stetho:1.5.0'
     // ExoPlayer
     implementation 'com.google.android.exoplayer:exoplayer:2.8.2'
+//    implementation 'com.google.android.exoplayer:exoplayer-core:2.8.2'
     // Testing
     // Instrumentation dependencies use androidTestImplementation
     // (as opposed to testImplementation for local unit tests run in the JVM)

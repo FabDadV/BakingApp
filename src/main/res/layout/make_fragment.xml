@@ -19,11 +19,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{step.shortDescription}" />
+            android:text="@{step.stepId}" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{step.description}" />
+            android:text="@{step.shortDescription}" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{step.description}"/>
+        </ScrollView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
