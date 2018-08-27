@@ -60,9 +60,7 @@ public abstract class AppDB extends RoomDatabase {
                         Log.d("TAG", "CreateDB");
 
                         ArrayList<RecipeApi> recipesApi = DataResponse.getInfo();
-                        do{
-                            addDelay();
-                        }while(recipesApi.size()==0);
+                        do{addDelay();}while(recipesApi.size()==0);
 
                         executors.diskIO().execute(() -> {
                             // Add a delay to simulate a long-running operation

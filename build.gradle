@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "ex.com.bakingapp"
-        minSdkVersion 21
+        minSdkVersion 18
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -48,6 +48,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     // for easy DB debugging
     implementation 'com.facebook.stetho:stetho:1.5.0'
+    // ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.8.2'
     // Testing
     // Instrumentation dependencies use androidTestImplementation
     // (as opposed to testImplementation for local unit tests run in the JVM)
