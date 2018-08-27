@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:background="#09C"
         android:contentDescription="@string/ingredients"
-        android:text="@string/ingredients"
+        android:text=""
         android:textColor="#ffffff"
         android:textSize="16sp"
         android:textStyle="bold|italic" />

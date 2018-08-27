@@ -19,7 +19,6 @@ import ex.com.bakingapp.data.api.DataResponse;
 import ex.com.bakingapp.data.api.Ingredient;
 import ex.com.bakingapp.data.api.RecipeApi;
 import ex.com.bakingapp.data.api.StepApi;
-import ex.com.bakingapp.utils.DataGenerator;
 
 // @TypeConverters(ListConverter.class)
 @Database(entities = {RecipeEntity.class, StepEntity.class}, version = 1, exportSchema = false)
