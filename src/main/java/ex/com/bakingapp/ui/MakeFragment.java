@@ -62,7 +62,6 @@ public class MakeFragment extends Fragment {
     public MakeFragment() {
         // Required empty public constructor
     }
-
     /* Creates make fragment for specific step */
     public static MakeFragment forStep(Step step) {
         MakeFragment fragment = new MakeFragment();
@@ -77,7 +76,6 @@ public class MakeFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,22 +101,6 @@ public class MakeFragment extends Fragment {
 
         int orientation = getResources().getConfiguration().orientation;
 
-/*
-        if (!TextUtils.isEmpty(videoUrl)) {
-            playerView.setVisibility(View.VISIBLE);
-            initializeVideo();
-            initializePlayer(Uri.parse(videoUrl));
-
-            // If on landscape and not on tablet take all the screen size
-            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                expandVideoView(playerView);
-                tvDes.setVisibility(View.GONE);
-            }
-        } else {
-            playerView.setVisibility(View.GONE);
-            ivThumb.setVisibility(View.VISIBLE);
-        }
-*/
         if (!TextUtils.isEmpty(videoUrl)) {
             playerView.setVisibility(View.VISIBLE);
             ivThumb.setVisibility(View.GONE);
