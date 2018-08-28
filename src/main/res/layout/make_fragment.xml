@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" >
-    <data>
-        <variable
-            name="step"
-            type="ex.com.bakingapp.data.db.Step" />
-    </data>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/step_player"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/player_height"/>
+
         <ImageView
+            android:id="@+id/step_thumb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/bon_appetit"
+            android:visibility="visible"
             android:contentDescription="@string/bon_app"
-            android:src="@drawable/bon_appetit" />
+            android:src="@drawable/bon_appetit"
+            />
+
         <TextView
+		    android:id = "@+id/step_short"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{step.shortDescription}" />
+			/>
+			
         <TextView
+            android:id="@+id/step_des"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{step.description}" />
+            android:visibility="visible"
+            />
+			
         <TextView
+            android:id="@+id/step_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="@{step.videoURL}" />
+			/>
+			
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/step_path"
+			android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="@{step.thumbnailURL}" />
-    </LinearLayout>
-</layout>
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+</LinearLayout>
+			
+</LinearLayout>
