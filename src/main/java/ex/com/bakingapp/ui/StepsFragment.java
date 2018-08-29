@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,9 +24,10 @@ import ex.com.bakingapp.viewmodel.ItemViewModel;
 import ex.com.bakingapp.widget.BackingWidget;
 
 public class StepsFragment extends Fragment {
-    private static final String KEY_RECIPE_ID = "recipe_id";
-    private static final String RECIPE_NAME = "recipe_name";
-    private static final String EXTRA_INGREDIENTS = "extra_ings";
+    public static final String KEY_RECIPE_ID = "recipe_id";
+    public static final String RECIPE_NAME = "recipe_name";
+    public static final String EXTRA_INGREDIENTS = "extra_ings";
+    public static final String EXTRA_RECIPE = "extra_recipe";
     private StepsFragmentBinding binding;
     private StepsAdapter stepsAdapter;
     private String name;
@@ -40,6 +42,7 @@ public class StepsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        Log.d("TAG", "onCreateView");
         // Inflate this data binding layout
         binding = DataBindingUtil.inflate(inflater, R.layout.steps_fragment, container, false);
         // Create and set the adapter for the RecyclerView.
@@ -55,10 +58,12 @@ public class StepsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        name = getArguments().getString(RECIPE_NAME);
-        text = getArguments().getString(EXTRA_INGREDIENTS);
+        int id = getActivity().getIntent().getIntExtra(KEY_RECIPE_ID, 1);
+        name = getActivity().getIntent().getStringExtra(RECIPE_NAME);
+        text = getActivity().getIntent().getStringExtra(EXTRA_INGREDIENTS);
+        Log.d("TAG", "onActivityCreated" + String.valueOf(id));
         ItemViewModel.Factory factory = new ItemViewModel.Factory(
-                getActivity().getApplication(), getArguments().getInt(KEY_RECIPE_ID));
+                getActivity().getApplication(), id);
         final ItemViewModel model = ViewModelProviders.of(this, factory)
                 .get(ItemViewModel.class);
         binding.setItemViewModel(model);
