@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.squareup.picasso.Picasso;
 
@@ -46,8 +47,10 @@ public class MakeFragment extends Fragment {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_VIDEO_URL = "video-url";
     private static final String KEY_THUMBNAIL_URL = "thumbnail-url";
-    public static final String SAVED_PLAYER_STATE = "playerState";
-    public static final String SAVED_PLAYER_POSITION = "playerPosition";
+    private static final String SAVED_PLAYER_STATE = "playerState";
+    private static final String SAVED_PLAYER_POSITION = "playerPosition";
+
+
 
     private AppDB appDB;
 
@@ -83,6 +86,11 @@ public class MakeFragment extends Fragment {
         // Inflate this data binding layout
         Log.d("TAG", "Make onCreateView ");
         View view = inflater.inflate(R.layout.make_fragment, container, false);
+
+        if (savedInstanceState != null) {
+            playerPosition = savedInstanceState.getLong(SAVED_PLAYER_POSITION);
+            playState = savedInstanceState.getBoolean(SAVED_PLAYER_STATE);
+        }
 
         String thumbUrl = getArguments().getString(KEY_THUMBNAIL_URL);
         videoUrl = getArguments().getString(KEY_VIDEO_URL);
@@ -139,7 +147,9 @@ public class MakeFragment extends Fragment {
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getActivity(),
                     userAgent), new DefaultExtractorsFactory(),null, null);
             exoPlayer.prepare(mediaSource);
-            exoPlayer.setPlayWhenReady(true);
+
+            exoPlayer.setPlayWhenReady(playState);
+            exoPlayer.seekTo(playerPosition);
         }
     }
 
@@ -156,24 +166,49 @@ public class MakeFragment extends Fragment {
 
     private void releasePlayer(){
         if(exoPlayer!=null){
+            playerPosition = exoPlayer.getCurrentPosition();
+            playState = exoPlayer.getPlayWhenReady();
             exoPlayer.stop();
             exoPlayer.release();
         }
         exoPlayer = null;
     }
     @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            initializePlayer(Uri.parse(videoUrl));
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
+            initializePlayer(Uri.parse(videoUrl));
+        }
+    }
+    @Override
     public void onDestroy() {
         super.onDestroy();
-        releasePlayer();
     }
     @Override
     public void onPause() {
         super.onPause();
-        releasePlayer();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
     }
     @Override
     public void onStop() {
         super.onStop();
-        releasePlayer();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
+    }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong(SAVED_PLAYER_POSITION, playerPosition);
+        outState.putBoolean(SAVED_PLAYER_STATE, playState);
     }
 }
