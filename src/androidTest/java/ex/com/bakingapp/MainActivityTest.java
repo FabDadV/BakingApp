@@ -58,7 +58,6 @@ public class MainActivityTest {
                                 0),
                         isDisplayed()));
         textView.check(matches(withText("Yellow Cake")));
-
     }
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
@@ -78,13 +77,29 @@ public class MainActivityTest {
             }
         };
     }
+    @Test
+    public void bakingAppTest() {
+        ViewInteraction recyclerView = onView(
+                allOf(withId(R.id.rv_list), withContentDescription("RecycleView"),
+                        childAtPosition(
+                                withClassName(is("android.widget.LinearLayout")),
+                                1)));
+        recyclerView.perform(actionOnItemAtPosition(1, click()));
 
+        ViewInteraction textView = onView(
+                allOf(withText("8"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class),
+                                        0),
+                                1),
+                        isDisplayed()));
+        textView.check(matches(withText("8")));
+    }
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
         assertEquals("ex.com.bakingapp", appContext.getPackageName());
     }
-
 }
