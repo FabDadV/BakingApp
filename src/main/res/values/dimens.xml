@@ -10,6 +10,8 @@
     <dimen name="min_height">64dp</dimen>
     <dimen name="item_min_height">100dp</dimen>
     <dimen name="widget_min_height">32dp</dimen>
+    <dimen name="button_width">32dp</dimen>
+    <dimen name="button_height">48dp</dimen>
     <dimen name="player_height">240dp</dimen>
 
     <dimen name="text_size">14sp</dimen>

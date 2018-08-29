@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">BakingApp</string>
+    <string name="step">Step</string>
+    <string name="last">Last</string>
+    <string name="next">Next</string>
     <string name="no_steps">No steps</string>
     <string name="loading_details">Loading details...</string>
     <string name="loading_data">Loading data...</string>
