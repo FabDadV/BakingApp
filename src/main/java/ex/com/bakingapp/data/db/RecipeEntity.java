@@ -38,6 +38,7 @@ public class RecipeEntity implements Recipe {
         this.servings = servings;
         this.image = image;
     }
+
     public RecipeEntity(Recipe recipe) {
         this.id = recipe.getId();
         this.name = recipe.getName();
@@ -45,4 +46,36 @@ public class RecipeEntity implements Recipe {
         this.servings = recipe.getServings();
         this.image = recipe.getImage();
     }
+/*
+    private RecipeEntity(Parcel in) {
+        this.id = in.readInt();
+        this.name = in.readString();
+        this.ingredients = in.readString();
+        this.servings = in.readInt();
+        this.image = in.readString();
+    }
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(id);
+        out.writeString(name);
+        out.writeString(ingredients);
+        out.writeInt(servings);
+        out.writeString(image);
+    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    // Creator for Parcelable object
+    public static final Parcelable.Creator<RecipeEntity> CREATOR = new Parcelable.Creator<RecipeEntity>() {
+        @Override
+        public RecipeEntity createFromParcel(Parcel parcel) {
+            return new RecipeEntity(parcel);
+        }
+        @Override
+        public RecipeEntity[] newArray(int size) {
+            return new RecipeEntity[size];
+        }
+    };
+*/
 }
